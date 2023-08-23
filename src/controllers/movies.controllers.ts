@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createMovieService } from "../services/movies.services";
+import { createMovieService, listMoviesService } from "../services/movies.services";
 import { Movie } from "../entities";
 
 const createMovieController = async (req: Request, res: Response): Promise<Response> => {
@@ -8,4 +8,11 @@ const createMovieController = async (req: Request, res: Response): Promise<Respo
     return res.status(201).json(newMovie);
 };
 
-export { createMovieController }
+const listMoviesController = async (req: Request, res: Response): Promise<Response> => {
+  const movies: Movie[] = await listMoviesService();
+  
+  return res.status(200).json(movies);
+};
+
+
+export { createMovieController, listMoviesController }

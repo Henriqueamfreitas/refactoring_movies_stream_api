@@ -13,10 +13,10 @@ const createMovieService = async (movieData: Movie): Promise<any> => {
   return movie;
 };
 
-const retrieveMoviesService = async (): Promise<Movie[]> => {
-  const movies = movieRepo.find() // vai trazer todos os livros
-
+const listMoviesService = async (): Promise<Movie[]> => {
+  const movies = movieRepo.find()
+  
   return movies;
 };
 
-export { createMovieService, retrieveMoviesService }
+export { createMovieService, listMoviesService }
