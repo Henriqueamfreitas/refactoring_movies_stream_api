@@ -1,9 +1,8 @@
-// src/server.ts
 import { AppDataSource } from "./data-source";
 import app from "./app"
 
 
-AppDataSource.initialize() // Inicia conexão com banco de dados
+AppDataSource.initialize() 
   .then(async () => {
     console.log("Database connected.")
 

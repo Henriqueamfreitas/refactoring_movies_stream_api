@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity('movies') // A entidade books vai ser a minha tabela
+@Entity('movies') 
 class Movie {
     @PrimaryGeneratedColumn('increment')
     id: number 
@@ -8,8 +8,8 @@ class Movie {
     @Column({ type: 'varchar', length: 50, unique: true })
     name: string 
 
-    @Column({ type: 'text' })
-    description: string 
+    @Column({ type: 'text', nullable: true })
+    description?: string | undefined | null 
 
     @Column({ type: 'integer' })
     duration: number 
