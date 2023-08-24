@@ -1,7 +1,11 @@
 import { Router } from "express";
 import "dotenv/config";
 import { validateBodyMiddleware } from "../middlewares/validadeBody.middleware";
-import { createMovieController, listMoviesController } from "../controllers/movies.controllers";
+import { 
+    createMovieController, 
+    listMoviesController, 
+    listMoviesPerPageController 
+} from "../controllers/movies.controllers";
 import { movieCreateSchema, movieSchema, movieReturnManySchema } from "../schemas/movie.schema";
 import { ensureNoNameDuplicatesMiddleWare } from "../middlewares/verify.middleware";
 
@@ -16,7 +20,8 @@ moviesRouter.post(
 
 moviesRouter.get(
     '/', 
-    listMoviesController
+    listMoviesPerPageController
 )
+
 
 export { moviesRouter }
