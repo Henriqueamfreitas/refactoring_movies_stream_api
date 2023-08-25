@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createMovieService, listMoviesService, listMoviesPerPageService } from "../services/movies.services";
+import { createMovieService, listMoviesPerPageService } from "../services/movies.services";
 import { Movie } from "../entities";
 import { movieRepo } from "../repositories";
 
@@ -9,30 +9,6 @@ const createMovieController = async (req: Request, res: Response): Promise<Respo
     return res.status(201).json(newMovie);
 };
 
-const listMoviesController = async (req: Request, res: Response): Promise<Response> => {
-  const movies: Movie[] = await listMoviesService();
-  
-  return res.status(200).json(movies);
-};
-
-// const listMoviesPerPageController = async (req: Request, res: Response): Promise<Response> => {
-//   const count: number = (await movieRepo.find()).length
-//   const movies: Movie[] = await listMoviesPerPageService(req.query);
-
-//   const baseUrl = `http://localhost:3000/movies?`
-//   const page = Number(req.query.page)
-//   const perPage = Number(req.query.perPage)
-//   const prevPage = page > 1 ? `${baseUrl}page=${Number(page - 1)}&perPage=${Number(perPage)}` : null
-//   const nextPage = `${baseUrl}page=${Number(page + 1)}&perPage=${Number(perPage)}`
-
-//   const returnObject = {
-//     prevPage: prevPage,
-//     nextPage: nextPage,
-//     count: count,
-//     data: movies
-//   }
-//   return res.status(200).json(returnObject);
-// };
 
 const listMoviesPerPageController = async (req: Request, res: Response): Promise<Response> => {
   const baseUrl = `http://localhost:3000/movies?`
@@ -68,4 +44,4 @@ const listMoviesPerPageController = async (req: Request, res: Response): Promise
   return res.status(200).json(returnObject);
 };
 
-export { createMovieController, listMoviesController, listMoviesPerPageController }
+export { createMovieController, listMoviesPerPageController }

@@ -3,7 +3,6 @@ import "dotenv/config";
 import { validateBodyMiddleware } from "../middlewares/validadeBody.middleware";
 import { 
     createMovieController, 
-    listMoviesController, 
     listMoviesPerPageController 
 } from "../controllers/movies.controllers";
 import { movieCreateSchema, movieSchema, movieReturnManySchema } from "../schemas/movie.schema";
@@ -23,5 +22,8 @@ moviesRouter.get(
     listMoviesPerPageController
 )
 
+moviesRouter.patch(
+    '/:id'
+)
 
 export { moviesRouter }

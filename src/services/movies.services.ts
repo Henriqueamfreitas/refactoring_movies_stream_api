@@ -14,12 +14,6 @@ const createMovieService = async (movieData: Movie): Promise<any> => {
   return movie;
 };
 
-const listMoviesService = async (): Promise<Movie[]> => {
-  const movies = movieRepo.find()
-  
-  return movies;
-};
-
 const listMoviesPerPageService = async (payload:any): Promise<Movie[]> => {
   let sort: string = payload.sort 
   let order: string = payload.order 
@@ -58,4 +52,4 @@ const listMoviesPerPageService = async (payload:any): Promise<Movie[]> => {
   return movies;
 };
 
-export { createMovieService, listMoviesService, listMoviesPerPageService }
+export { createMovieService, listMoviesPerPageService }
