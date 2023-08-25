@@ -11,6 +11,6 @@ const movieSchema = z.object({
 
 const movieCreateSchema = movieSchema.omit({ id: true })
 const movieReturnManySchema = movieSchema.array()
-const userLoginSchema = movieSchema.omit({ id: true, name: true, admin: true })
+const updateMovieSchema = movieSchema.partial()
 
-export { movieSchema, movieCreateSchema, movieReturnManySchema }
+export { movieSchema, movieCreateSchema, movieReturnManySchema, updateMovieSchema }

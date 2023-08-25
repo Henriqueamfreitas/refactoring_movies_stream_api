@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createMovieService, listMoviesPerPageService } from "../services/movies.services";
+import { createMovieService, listMoviesPerPageService, updateMovieService, deleteMovieService } from "../services/movies.services";
 import { Movie } from "../entities";
 import { movieRepo } from "../repositories";
 
@@ -44,4 +44,23 @@ const listMoviesPerPageController = async (req: Request, res: Response): Promise
   return res.status(200).json(returnObject);
 };
 
-export { createMovieController, listMoviesPerPageController }
+const deleteMovieController = async (req: Request, res: Response): Promise<Response> => {
+  await deleteMovieService(res.locals.foundMovie);
+  return res.status(204).json();
+};
+
+
+const updateMovieController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { foundMovie } = res.locals;
+  const { body } = req;
+
+  const movie: Movie = await updateMovieService(foundMovie, body);
+
+  return res.status(200).json(movie);
+};
+
+
+export { createMovieController, listMoviesPerPageController, updateMovieController, deleteMovieController }

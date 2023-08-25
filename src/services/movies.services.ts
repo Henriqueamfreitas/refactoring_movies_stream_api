@@ -5,6 +5,7 @@ import { MovieCreate, MovieRead, MovieUpdate } from "../interfaces/movies.interf
 import { movieCreateSchema } from "../schemas/movie.schema";
 import { movieRepo } from "../repositories";
 import { string } from "pg-format";
+import { AppError } from "../errors/error";
 
 const createMovieService = async (movieData: Movie): Promise<any> => {
   const movie: Movie = movieRepo.create(movieData);
@@ -52,4 +53,12 @@ const listMoviesPerPageService = async (payload:any): Promise<Movie[]> => {
   return movies;
 };
 
-export { createMovieService, listMoviesPerPageService }
+const deleteMovieService = async (movie: Movie): Promise<void> => {
+  await movieRepo.remove(movie);
+};
+
+const updateMovieService = async ( movie: Movie, payload: MovieUpdate): Promise<Movie> => {
+  return await movieRepo.save({ ...movie, ...payload });
+};
+
+export { createMovieService, listMoviesPerPageService, deleteMovieService, updateMovieService }
