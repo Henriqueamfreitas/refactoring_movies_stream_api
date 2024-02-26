@@ -27,8 +27,9 @@ const listMoviesPerPageController = async (req: Request, res: Response): Promise
   const count: number = (await movieRepo.find()).length
   const movies: Movie[] = await listMoviesPerPageService(req.query);
   const prevPage = page > 1 ? `${baseUrl}page=${Number(page - 1)}&perPage=${Number(perPage)}` : null
+
   let nextPage: string | null = ""
-  if((page*perPage-perPage-count > 0)){
+  if((count - page*perPage <= 0)){
     nextPage = null
   } else{
     nextPage = `${baseUrl}page=${Number(page + 1)}&perPage=${Number(perPage)}`
