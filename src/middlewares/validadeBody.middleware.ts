@@ -7,7 +7,7 @@ import {
 import { ZodTypeAny } from "zod"
 import { AppError } from "../errors/error"
 import { verify } from "jsonwebtoken"
-
+ 
 const validateBodyMiddleware = 
 (schema: ZodTypeAny) =>  
 (req: Request, res: Response, next: NextFunction): void => {

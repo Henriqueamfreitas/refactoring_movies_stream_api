@@ -17,12 +17,6 @@ const ensureNoNameDuplicatesMiddleWare = async (
         name: req.body.name
     })
 
-    // console.log((foundMovie?.id))
-    // // console.log(req.params.id)
-    // if((req.params.id !== undefined) && (foundMovie?.id !== Number(req.params.id))){
-    //     const error = new AppError("Movie already exists.", 409)
-    //     return next(error);
-    // }
     if (foundMovie) {
         const error = new AppError("Movie already exists.", 409)
         return next(error);

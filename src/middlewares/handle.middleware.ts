@@ -6,7 +6,7 @@ import {
 } from "express";
 import { AppError } from '../errors/error';
 import { ZodError } from "zod"
-
+ 
 const error = (
     err: Error,
     req: Request,
