@@ -13,10 +13,14 @@ const ensureNoNameDuplicatesMiddleWare = async (
     res: Response, 
     next: NextFunction
 ): Promise<Response | void> => {
+    if(!req.body.name){
+        return next()
+    }
+    
     const foundMovie: Movie | null = await movieRepo.findOneBy({
         name: req.body.name
     })
-
+    
     if (foundMovie) {
         const error = new AppError("Movie already exists.", 409)
         return next(error);
@@ -34,7 +38,7 @@ const ensureIdExistsMiddleware = async(
 ): Promise<Response | void> => {
     const foundMovie: Movie | null = await movieRepo.findOneBy({
         id: Number(req.params.id)
-    }) 
+    })     
     
     if(!foundMovie) {
         const error = new AppError("Movie not found", 404)
@@ -46,7 +50,28 @@ const ensureIdExistsMiddleware = async(
     return next()
 }
 
+
+const ensureUniqueNameMiddleware = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Response | void> => {
+    const { body } = req;
+
+    const existingMovie = await movieRepo.findOneBy({ name: body.name });
+
+    if ((existingMovie) && (existingMovie.id !== Number(req.params.id))) {
+        const error = new AppError("Movie already exists.", 409);
+        return next(error);
+    }
+
+    return next();
+};
+
+
+
 export { 
     ensureNoNameDuplicatesMiddleWare,
-    ensureIdExistsMiddleware
+    ensureIdExistsMiddleware,
+    ensureUniqueNameMiddleware
 }

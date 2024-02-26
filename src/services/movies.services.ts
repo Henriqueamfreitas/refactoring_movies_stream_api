@@ -1,6 +1,8 @@
 import { Movie } from "../entities";
 import { MovieUpdate } from "../interfaces/movies.interfaces";
 import { movieRepo } from "../repositories";
+import { string } from "pg-format";
+import { AppError } from "../errors/error";
 
 const createMovieService = async (movieData: Movie): Promise<any> => {
   const movie: Movie = movieRepo.create(movieData);

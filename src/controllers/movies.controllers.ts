@@ -9,7 +9,6 @@ const createMovieController = async (req: Request, res: Response): Promise<Respo
     return res.status(201).json(newMovie);
 };
 
-
 const listMoviesPerPageController = async (req: Request, res: Response): Promise<Response> => {
   const baseUrl = `http://localhost:3000/movies?`
   let page = Number(req.query.page) || 1;
@@ -50,7 +49,6 @@ const deleteMovieController = async (req: Request, res: Response): Promise<Respo
   return res.status(204).json();
 };
 
-
 const updateMovieController = async (
   req: Request,
   res: Response
@@ -62,6 +60,7 @@ const updateMovieController = async (
 
   return res.status(200).json(movie);
 };
+
 
 
 export { createMovieController, listMoviesPerPageController, updateMovieController, deleteMovieController }

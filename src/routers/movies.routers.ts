@@ -8,7 +8,7 @@ import {
     updateMovieController 
 } from "../controllers/movies.controllers";
 import { movieCreateSchema, updateMovieSchema, movieSchema, movieReturnManySchema } from "../schemas/movie.schema";
-import { ensureIdExistsMiddleware, ensureNoNameDuplicatesMiddleWare } from "../middlewares/verify.middleware";
+import { ensureIdExistsMiddleware, ensureNoNameDuplicatesMiddleWare, ensureUniqueNameMiddleware } from "../middlewares/verify.middleware";
 
 const moviesRouter: Router = Router()
 
@@ -34,6 +34,8 @@ moviesRouter.patch(
     '/:id',
     validateBodyMiddleware(updateMovieSchema),
     ensureIdExistsMiddleware,
+    ensureUniqueNameMiddleware,
+    // ensureNoNameDuplicatesMiddleWare,
     updateMovieController
 )
 
