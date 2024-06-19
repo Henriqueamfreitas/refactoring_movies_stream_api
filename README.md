@@ -328,3 +328,5 @@ Deve ser possível deletar um filme pelo id recebido nos parâmetros da rota.
 ```json
 
 ```
+
+**Tecnologias**: Typeorm, node, express, typescript
